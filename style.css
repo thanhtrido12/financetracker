@@ -1,3 +1,6 @@
+/* ==========================================
+   1. ĐỊNH DẠNG CHUNG (RESET STYLE)
+   ========================================== */
 :root {
     --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
@@ -10,7 +13,7 @@
 
 body {
     background-color: #f7f7f7;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Lato', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,17 +22,14 @@ body {
 }
 
 .container {
+    margin: 30px auto;
     width: 400px;
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: var(--box-shadow);
+    padding: 10px;
 }
 
 h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
 }
 
 h3 {
@@ -38,6 +38,14 @@ h3 {
     margin: 40px 0 10px;
 }
 
+h4 {
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   2. KHU VỰC HIỂN THỊ SỐ DƯ & THỐNG KÊ
+   ========================================== */
 .balance-container {
     text-align: center;
     margin-bottom: 20px;
@@ -58,6 +66,7 @@ h3 {
     text-align: center;
 }
 
+/* Kẻ vạch dọc ngăn cách giữa Thu nhập và Chi phí */
 .inc-exp-container > div:first-of-type {
     border-right: 1px solid #dedede;
 }
@@ -68,88 +77,128 @@ h3 {
     margin: 5px 0;
 }
 
-.money.plus { color: #2ecc71; }
-.money.minus { color: #e74c3c; }
+.money.plus {
+    color: #2ecc71; /* Màu xanh lá cho Thu Nhập tổng */
+}
 
-input[type='text'], input[type='number'] {
+.money.minus {
+    color: #c0392b; /* Màu đỏ cho Chi Phí tổng */
+}
+
+/* ==========================================
+   3. DANH SÁCH LỊCH SỬ GIAO DỊCH (SỬA LỖI UI)
+   ========================================== */
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 40px;
+    max-height: 240px; /* Tạo khung cuộn nếu quá nhiều giao dịch */
+    overflow-y: auto;
+}
+
+.list li {
+    background-color: #fff;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Căn giữa các chữ và nút theo chiều dọc */
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 4px;
+    box-shadow: var(--box-shadow);
+    
+    /* FIX LỖI: Xóa sạch mọi đường viền lỗi xung quanh mặt định */
+    border: none; 
+}
+
+/* Chỉ thêm đúng 1 vạch màu xanh dày 5px bên PHẢI cho Thu Nhập */
+.list li.plus {
+    border-right: 5px solid #2ecc71;
+}
+
+/* Chỉ thêm đúng 1 vạch màu đỏ dày 5px bên PHẢI cho Chi Phí */
+.list li.minus {
+    border-right: 5px solid #c0392b;
+}
+
+.list li span {
+    margin-left: auto; /* Đẩy phần số tiền về phía bên phải sát nút xóa */
+    font-weight: bold;
+}
+
+/* ĐỊNH DẠNG NÚT XÓA: LUÔN HIỆN RÕ RÀNG */
+.delete-btn {
+    cursor: pointer;
+    background-color: #e74c3c; /* Nền đỏ */
+    color: #fff;               /* Chữ x màu trắng */
+    border: 0;
+    border-radius: 3px;        /* Bo góc nhẹ cho nút vuông */
+    padding: 2px 7px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 12px;         /* Khoảng cách an toàn giữa số tiền và nút x */
+    transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b; /* Di chuột vào nút x sẽ đậm màu hơn một chút */
+}
+
+/* ==========================================
+   4. KHU VỰC FORM NHẬP LIỆU
+   ========================================== */
+.form-control {
+    margin-bottom: 15px;
+}
+
+.form-control label {
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.form-control input[type='text'],
+.form-control input[type='number'] {
     border: 1px solid #dedede;
-    border-radius: 5px;
+    border-radius: 4px;
     display: block;
     font-size: 16px;
     padding: 10px;
     width: 100%;
-    margin-top: 5px;
 }
 
-.form-control { margin-bottom: 15px; }
+/* Cấu hình hàng ngang cho 2 nút tròn Radio */
 .radio-group {
     display: flex;
-    justify-content: Arial;
     gap: 20px;
     margin: 15px 0;
 }
 
+.radio-group label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 0;
+}
+
+/* Nút bấm to màu tím bên dưới cùng */
 .btn {
     cursor: pointer;
     background-color: #9c27b0;
     box-shadow: var(--box-shadow);
     color: #fff;
     border: 0;
+    border-radius: 4px;
     display: block;
     font-size: 16px;
-    margin: 10px 0 30px;
+    margin: 20px 0 30px;
     padding: 12px;
     width: 100%;
-    border-radius: 5px;
     font-weight: bold;
-    transition: all 0.3s ease;
+    text-transform: uppercase;
 }
 
-.btn:hover { background-color: #821796; }
-
-.list {
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 40px;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.list li {
-    background-color: #fff;
-    box-shadow: var(--box-shadow);
-    color: #333;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 3px;
-}
-
-.list li.plus { border-right: 5px solid #2ecc71; }
-.list li.minus { border-right: 5px solid #e74c3c; }
-
-.delete-btn {
-    cursor: pointer;
-    background-color: #e74c3c;
-    border: 0;
-    color: #fff;
-    font-size: 20px;
-    line-height: 20px;
-    padding: 2px 8px;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(-100%, -50%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 3px 0 0 3px;
-}
-
-.list li:hover .delete-btn { opacity: 1; }
-
-/* Responsive cơ bản */
-@media (max-width: 450px) {
-    .container { width: 95%; padding: 15px; }
+.btn:focus,
+.delete-btn:focus {
+    outline: 0;
 }
